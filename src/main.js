@@ -1,7 +1,3 @@
-/*
-Mountian biking infite runner (haha)
-*/
-
 let config = {
     type: Phaser.CANVAS,
     zoom: 1, 
@@ -14,22 +10,32 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 100 },
         }
     },
-    scene: [ Menu, Play2, Death, Win ]
+    scene: [ Menu, Play2, Death ]
 }
 
 let game = new Phaser.Game(config);
 let borderUISize = game.config.height / 15;
 let borderPadding = 1;
 let keyLEFT, keyRIGHT, keyDOWN, keyUP, keyR, keySPACE;
-let enemys;
-let enemy;
 let spaceship;
-let num_enemies = 1;
-/*
-function startTransition() {this.scene.start('MenuScene')};
-function mainTransition() {this.scene.start('PlayScene')};
-function winTransition() {this.scene.start('WinScene')};
-function deathTransition() {this.scene.start('deathScene');};*/
+let num_enemies = 5;
+let currtime = 0;
+let inti;
+let gamemusic;
+let collectibleitem;
+let score = 0;
+let scoretext;
+
+function collectitem(player, item){
+    console.log("collided!");
+    collect = this.sound.add('collectsound');
+    collect.play({
+    volume: 1,
+    loop: false}   );
+   // collectibleitem.disableBody(true,true);
+    score++;
+   // scoretext.setText('Current Score: ' + score);
+}

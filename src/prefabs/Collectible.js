@@ -1,13 +1,11 @@
 // Rocket prefab
-class Platform extends Phaser.GameObjects.Sprite {
+class Collectible extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, frame);
         scene.physics.add.existing(this); 
         this.body.setCollideWorldBounds(true);
         //this.moveSpeed = Math.random() * (200 - 350) + 350;
         this.setPosition(this.y, game.config.height-100);
-        this.setScale(0.3,0.1);
-
 }
 
 update() {
