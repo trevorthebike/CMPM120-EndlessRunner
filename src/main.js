@@ -25,17 +25,20 @@ let num_enemies = 5;
 let currtime = 0;
 let inti;
 let gamemusic;
+let bounce;
+let try1;
 let collectibleitem;
 let score = 0;
 let scoretext;
-
-function collectitem(player, item){
+/*
+function collectitem(){
     console.log("collided!");
+   // console.log(player.x)
     collect = this.sound.add('collectsound');
     collect.play({
     volume: 1,
     loop: false}   );
-   // collectibleitem.disableBody(true,true);
+   // player.body.disableBody(true,true);
     score++;
    // scoretext.setText('Current Score: ' + score);
-}
+}*/

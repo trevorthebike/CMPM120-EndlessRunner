@@ -5,6 +5,7 @@ class Death extends Phaser.Scene {
 
     preload() {
         this.load.image('playerdeath', 'assets/death.png');
+        this.load.audio('new', "assets/explosion.38.wav");
     }
 
     create() {

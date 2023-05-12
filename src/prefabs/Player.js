@@ -26,4 +26,9 @@ class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
+    reset() {
+        this.y = 0;
+        this.x = Math.random() * 500 + 100;
+    }
+
 }

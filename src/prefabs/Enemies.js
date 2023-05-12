@@ -1,5 +1,5 @@
 // Rocket prefab
-class Collectible extends Phaser.GameObjects.Sprite {
+class Enemies extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, frame);
         scene.physics.add.existing(this); 
@@ -8,15 +8,10 @@ class Collectible extends Phaser.GameObjects.Sprite {
 }
 
 update() {
-    if(this.y > game.config.height){ 
-        this.y = 0;
-        this.x = Math.random() * 500 + 100;
+    if(this.x < 0){ 
+        this.y = game.config.height-400 * Math.random();
+        this.x = game.config.width;
     }
-    this.body.setVelocityY(200);
-}
-
-reset(){
-    this.y = 0;
-    this.x = Math.random() * 500 + 100;
+    this.body.setVelocityX(-100-100*(currtime*0.2));
 }
 }

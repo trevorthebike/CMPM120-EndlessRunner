@@ -32,15 +32,17 @@ class Play2 extends Phaser.Scene
             classType: Collectible,
             runChildUpdate: true
         });
-        
-        for(let i = 0; i < num_enemies/2; i++){
-            let collectible = collectibleGroup.get(this, 500*i, 500-i, 'collectible').body.setAllowGravity(false);
-            collectible.setImmovable(true);
-        }
+        this.collectible = collectibleGroup.get(this, 100, 100, 'collectible').body.setAllowGravity(false);
+        let enemyGroup = this.physics.add.group({
+            classType: Enemies,
+            runChildUpdate: true
+        });
+        this.enemy = enemyGroup.get(this, 100, 100, 'enemy').body.setAllowGravity(false);
         this.player = playerGroup.get(this, 240, 440 , 'rocket').body.setCollideWorldBounds(true);
         this.player.reset();
-        this.physics.add.collider(platformGroup, playerGroup);
-        this.physics.add.overlap(collectibleGroup, playerGroup, collectitem, null, this);
+        this.physics.add.collider(platformGroup, this.player, makeSound), null, this;
+        this.physics.add.overlap(this.collectible, playerGroup, collectitem, null, this);
+        this.physics.add.collider(this.enemy, playerGroup, hitEnemy, null, this);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -65,6 +67,11 @@ class Play2 extends Phaser.Scene
         gamemusic.play({
             volume: 0.5,
             loop: true}   );
+        bounce = this.sound.add('caught');
+        try1= this.sound.add('try');
+        /*bounce.play({
+            volume: 1,
+            loop: false}   );*/
     }
 
     update ()
@@ -79,8 +86,39 @@ class Play2 extends Phaser.Scene
         this.timeLeft.text = currtime; 
         this.scoreLeft.text = score; 
         if(this.player.y > this.game.config.height-40){
-           this.scene.start('deathScene');
+            if(score <= 0){
+                console.log(score);
+                this.scene.start('deathScene');
+            }
+            else{
+                this.player.y = 0;
+                this.player.x = Math.random() * 500 + 100;
+                this.score--;
+                try1.play({
+                    volume: 1,
+                    loop: false}   );;
+            }
         }
         this.ocean.tilePositionX += 1 + 0.1 * currtime; 
     }
+}
+
+
+function collectitem(){
+    this.collectible.reset();
+    collect = this.sound.add('collectsound');
+    collect.play({
+    volume: 1,
+    loop: false}   );
+    score++;
+}
+
+function hitEnemy(){
+    this.scene.start('deathScene');
+}
+
+function makeSound(){
+    bounce.play({
+        volume: 1,
+        loop: false}   );;
 }
