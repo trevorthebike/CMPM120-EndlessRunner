@@ -1,3 +1,21 @@
+/*
+Trevor Gardner
+Endless runner V700000
+23 hours (physics aah)
+
+Creative Tilt:
+I added gravity that makes the players jumps feel much more realistic. 
+I made the background and platfroms and the background move faster as the time increased,
+increasing difficulty and the feeling of speed in the game.This also gives the cool visual effect 
+of the vertically falling healths to appear to move sideways as it speeds up.
+I added an ememy that flys at the the player in the horizontal direction and that takes one health away
+from the player. The player also loses on health from hitting the ground. There are also falling health
+pickups that give the player more health if they overlap. 
+
+
+*/
+
+
 let config = {
     type: Phaser.CANVAS,
     zoom: 1, 

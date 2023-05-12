@@ -39,6 +39,7 @@ class Play2 extends Phaser.Scene
             runChildUpdate: true
         });
         this.enemy = enemyGroup.get(this, 100, 100, 'enemy').body.setAllowGravity(false);
+        this.enemy.setImmovable(true);
         this.player = playerGroup.get(this, 240, 440 , 'rocket').body.setCollideWorldBounds(true);
         this.player.reset();
         this.physics.add.collider(platformGroup, this.player, makeSound), null, this;

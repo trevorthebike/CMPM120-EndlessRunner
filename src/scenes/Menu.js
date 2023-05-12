@@ -7,14 +7,12 @@ class Menu extends Phaser.Scene {
       this.load.image('start', 'assets/start.png');
       this.load.image('bg', 'assets/background1.png');
         this.load.image('rocket', 'assets/player.png');
-        //this.load.image('ground', 'assets/ground1.png');
         this.load.image('platform', 'assets/ground1.png');
         this.load.image('enemy', 'assets/enemy.png');
         this.load.audio('bgmusic', "assets/bgsound.wav");
        this.load.audio('caught', 'assets/splash.wav');
         this.load.image('collectible', 'assets/flyingpoo.png');
         this.load.audio('collectsound', "assets/pickupCoin.wav");
-        this.load.audio('newsound', "assets/explosion.38.wav");
         this.load.audio('try', "assets/audio.wav");
         this.load.audio('try1', "assets/audio1.wav");
   }
