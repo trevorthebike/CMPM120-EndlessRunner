@@ -13,6 +13,7 @@ class Play2 extends Phaser.Scene
     }
 
     create () {  
+        score = 1;
         this.ocean = this.add.tileSprite(0,0,1920,1080, 'bg').setOrigin(0,0);
         let platformGroup = this.physics.add.group({
             classType: Platform,
@@ -52,7 +53,7 @@ class Play2 extends Phaser.Scene
         let scoreConfig = {
             fontFamily: 'Sans Serif',
             fontSize: '20px',
-            backgroundColor: '#000000',
+            backgroundColor: '#FFFFFF',
             color: '#843605',
             align: 'right',
             padding: {
@@ -61,14 +62,15 @@ class Play2 extends Phaser.Scene
             },
             fixedWidth: 100
         }
-        this.timeLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.currtime, scoreConfig);
-        this.scoreLeft = this.add.text(game.config.width-100, borderUISize + borderPadding*2, this.score, scoreConfig);
+        this.timeLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, "Time:  "   + this.currtime, scoreConfig);
+        this.scoreLeft = this.add.text(game.config.width-100, borderUISize + borderPadding*2, "Heakth:  " + this.score, scoreConfig);
         gamemusic = this.sound.add('bgmusic');
         gamemusic.play({
             volume: 0.5,
             loop: true}   );
         bounce = this.sound.add('caught');
         try1= this.sound.add('try');
+        try2= this.sound.add('try1');
         /*bounce.play({
             volume: 1,
             loop: false}   );*/
@@ -83,8 +85,8 @@ class Play2 extends Phaser.Scene
             currtime++;
             this.inti = 0;
         }
-        this.timeLeft.text = currtime; 
-        this.scoreLeft.text = score; 
+        this.timeLeft.text = "Time:  " +  currtime; 
+        this.scoreLeft.text = "Health  " + score; 
         if(this.player.y > this.game.config.height-40){
             if(score <= 0){
                 console.log(score);
@@ -93,7 +95,7 @@ class Play2 extends Phaser.Scene
             else{
                 this.player.y = 0;
                 this.player.x = Math.random() * 500 + 100;
-                this.score--;
+                score--;
                 try1.play({
                     volume: 1,
                     loop: false}   );;
@@ -113,8 +115,19 @@ function collectitem(){
     score++;
 }
 
-function hitEnemy(){
-    this.scene.start('deathScene');
+function hitEnemy(){;;
+    if(score <= 0){
+        console.log(score);
+        this.scene.start('deathScene');
+    }
+    else{
+        this.player.y = 0;
+        this.player.x = Math.random() * 500 + 100;
+        score--;
+        try1.play({
+            volume: 1,
+            loop: false}   );;
+    }
 }
 
 function makeSound(){

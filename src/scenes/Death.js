@@ -14,8 +14,8 @@ class Death extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         let scoreConfig = {
             fontFamily: 'Sans Serif',
-            fontSize: '30px',
-            backgroundColor: '#000000',
+            fontSize: '14x',
+            backgroundColor: '#FFFFFF',
             color: '#843605',
             align: 'right',
             padding: {
@@ -24,9 +24,13 @@ class Death extends Phaser.Scene {
             },
             //fixedWidth: 300
         }
-        this.scoreLeft = this.add.text(170, 250, "Final Score:    " + currtime, scoreConfig);
+        this.scoreLeft = this.add.text(170, 250, "Final Score:    " + currtime , scoreConfig);
+        let credittext = this.add.text(0, 350, "All Assets created by Me (Trevor Gardner) using Krista and sfxr and robot voice(?)" , scoreConfig);
         currtime = 0;
         score  = 0;
+        try2.play({
+            volume: 1,
+            loop: false}   );;
     }
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyR)){ this.scene.start('startScene')};

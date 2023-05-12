@@ -27,8 +27,9 @@ let inti;
 let gamemusic;
 let bounce;
 let try1;
+let try2;
 let collectibleitem;
-let score = 0;
+let score = 1;
 let scoretext;
 /*
 function collectitem(){
